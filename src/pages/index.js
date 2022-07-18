@@ -5,9 +5,9 @@ import LandingPage from "./LandingPage";
 
 export default function Home() {
   return (
-    <div>
-      {/* <LandingPage /> */}
-      <SearchRecipeForm />
+    <div className="font-poppins">
+      <LandingPage />
+      {/* <SearchRecipeForm /> */}
     </div>
   );
 }

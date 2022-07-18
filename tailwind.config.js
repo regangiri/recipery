@@ -5,10 +5,16 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        primary: "#9EB23B",
+        secondary: "#C7D36F",
+        text: "#FCF9C6",
+        accent: "#E0DECA",
+      },
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        poppins: ["Poppins,sans-serif"],
         serif: ["Lora", ...defaultTheme.fontFamily.serif],
+        sans: ["Proxima Nova", ...defaultTheme.fontFamily.sans],
       },
     },
   },
