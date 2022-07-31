@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import MealPlanCard from "./MealPlanCard";
+import RecipeCalorieResult from "./RecipeCalorieResult";
 
 function CalorieCount() {
   const [umur, setUmur] = useState(0);
@@ -37,6 +38,10 @@ function CalorieCount() {
     dispatch(fetchDailyMeal(calorieNeeds));
     console.log(calorieNeeds);
   }, [calorieNeeds]);
+
+  useEffect(() => {
+    setCalorieNeeds(2000);
+  }, []);
 
   return (
     <div className="calorie-count-container">
@@ -107,14 +112,20 @@ function CalorieCount() {
         <h3>Your Calorie Needs : {calorieNeeds}</h3>
 
         <button
-          onClick={() => setShowDailyMealPlan(!showDailyMealPlan)}
+          onClick={() => {
+            setSearching(false);
+            setShowDailyMealPlan(!showDailyMealPlan);
+          }}
           className="m-1 px-6 py-3 border-2 rounded-2xl bg-primary text-text hover:bg-text hover:text-primary"
         >
           Set Daily Meal Plan
         </button>
 
         <button
-          onClick={() => setSearching(!searching)}
+          onClick={() => {
+            setShowDailyMealPlan(false);
+            setSearching(!searching);
+          }}
           className="m-1 px-6 py-3 border-2 rounded-2xl bg-primary text-text hover:bg-text hover:text-primary"
         >
           Search Recipe
@@ -125,14 +136,19 @@ function CalorieCount() {
         {searching
           ? calorieData.map((data) => {
               return (
-                <div className="mx-8 my-4 border-2 w-96 h-full">
-                  <div>
-                    <h3>{data.title}</h3>
-                    <p>{data.id}</p>
-                    <p>{data.readyInMinutes}</p>
-                  </div>
-                  <img src={data.image} alt="" />
-                </div>
+                <RecipeCalorieResult
+                  title={data.title}
+                  id={data.id}
+                  calories={data.calories}
+                  img={data.image}
+                  classname={
+                    "bg-primary mx-2 my-4 border-2 w-96 h-full text-center flex flex-col items-center justify-center"
+                  }
+                  imgClassName={"w-full h-64"}
+                  titleClassName={
+                    "font-bold my-4 text-center h-14 w-60 mx-auto"
+                  }
+                />
               );
             })
           : null}

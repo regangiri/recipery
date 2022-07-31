@@ -11,7 +11,7 @@ export const getIngredients = (id) => {
   return (dispatch) => {
     axios
       .get(
-        `https://api.spoonacular.com/recipes/${id}/information?&apiKey=25b65521ba854ab197f6c3e63c06fbe8`
+        `https://api.spoonacular.com/recipes/${id}/information?&apiKey=${process.env.API_KEY}`
       )
       .then((res) => {
         // console.log(res.data.analyzedInstructions[0].steps);
