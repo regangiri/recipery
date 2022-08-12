@@ -47,9 +47,9 @@ function MealPlanCard({ meal }) {
           <h3>{dataRecipePlan?.title}</h3>
           <h3 className="font-bold">Ingredients</h3>
           <div className="ingredients-container my-3 columns-3">
-            {ingredients.map((ingredient) => {
+            {ingredients.map((ingredient, index) => {
               return (
-                <ul className="ingredient">
+                <ul key={index} className="ingredient">
                   <li>{ingredient.name}</li>
                 </ul>
               );
@@ -57,9 +57,9 @@ function MealPlanCard({ meal }) {
           </div>
           <div className="step flex flex-col my-3">
             <h3 className="font-bold">Steps</h3>
-            {cookingStep.map((step) => {
+            {cookingStep.map((step, index) => {
               return (
-                <div>
+                <div key={index}>
                   {step.number} {step.step}
                 </div>
               );
