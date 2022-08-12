@@ -30,7 +30,9 @@ function RecipeCalorieResult(props) {
       <div className={`${props.classname}`}>
         <div>
           <h3 className={`${props.titleClassName}`}>{props.title}</h3>
-          <p>Calories :{props.calories}</p>
+          <p className={`${props.calorieClassName} font-bold`}>
+            Calories :{props.calories}
+          </p>
         </div>
         <img src={props.img} alt="" className={`${props.imgClassName}`} />
         <button
@@ -38,14 +40,14 @@ function RecipeCalorieResult(props) {
             setShowModal(true);
             getIngredients(e, props.id);
           }}
-          className="px-3 py-1 my-3 border-2 rounded-xl"
+          className="px-3 py-1 my-3 border-2 rounded-xl text-text bg-primary hover:text-primary hover:bg-text font-semibold"
         >
           Get Recipes
         </button>
       </div>
       <Modal open={showModal} setOpen={setShowModal}>
         <div className="max-h-96 lg:max-w-[50rem] lg:max-h-[30rem] overflow-scroll overflow-x-hidden">
-          <h3>{props.title}</h3>
+          <h3 className="font-bold text-xl py-3">{props.title}</h3>
           <h3 className="font-bold">Ingredients</h3>
           <div className="ingredients-container my-3 columns-3">
             {ingredients.map((ingredient) => {

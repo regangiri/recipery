@@ -13,7 +13,7 @@ export default function PopularRecipe() {
       )
       .then((res) => {
         setPopularRecipes(res.data.recipes);
-        console.log(res.data.recipes);
+        console.log("popular recipes", res.data.recipes);
       });
   };
   useEffect(() => {
@@ -61,8 +61,8 @@ export default function PopularRecipe() {
   };
   return (
     <div className=" pt-12 pb-8 lg:pb-0">
-      <div className="h-96  lg:h-full">
-        <h1 className="text-4xl text-text drop-shadow-sm font-semibold text-center pb-8 font-typography">
+      <div className="h-full  lg:h-full">
+        <h1 className="text-4xl text-text drop-shadow-sm font-semibold text-center  font-typography">
           Popular Recipe
         </h1>
         <Slider {...settings}>
@@ -74,8 +74,9 @@ export default function PopularRecipe() {
                 key={recipe.id}
                 id={recipe.id}
                 calories={recipe.calories}
+                calorieClassName="hidden "
                 classname={
-                  "bg-primary mx-2 my-4 border-2 w-full h-full text-center flex flex-col items-center justify-center rounded-md"
+                  "bg-secondary mx-2 my-4 border-2 w-full h-full text-center flex flex-col items-center justify-center rounded-md"
                 }
                 imgClassName={"w-full h-64"}
                 titleClassName={"font-bold my-4 text-center h-14 w-60 mx-auto"}

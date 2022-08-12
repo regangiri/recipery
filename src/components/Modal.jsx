@@ -37,11 +37,11 @@ export const Modal = (props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full transform overflow-hidden rounded-t-2xl bg-white pt-4 pb-6 px-8 text-left self-end shadow-xl transition-all lg:self-center lg:w-fit lg:rounded-2xl">
+                <Dialog.Panel className="w-full transform overflow-hidden  rounded-t-2xl bg-white pt-4 pb-6 px-8 text-left self-end shadow-xl transition-all lg:self-center lg:w-fit lg:rounded-2xl ">
                   <div>
                     <div className="w-[60px] h-[6px] rounded-3xl bg-accent mx-auto lg:hidden"></div>
                     <FiX
-                      className="hidden ml-auto cursor-pointer lg:block"
+                      className="hidden ml-auto cursor-pointer lg:block "
                       size={24}
                       onClick={() => setOpen(false)}
                     />

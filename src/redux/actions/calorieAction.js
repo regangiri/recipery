@@ -20,7 +20,7 @@ export const fetchCalorie = (calorieInput) => {
       .get(
         `https://api.spoonacular.com/recipes/findByNutrients?&apiKey=${
           process.env.API_KEY
-        }&maxCalories=${calorieInput}&minCalories=${calorieInput - 500}`
+        }&maxCalories=${calorieInput / 3}&minCalories=${calorieInput / 3 - 100}`
       )
       .then((res) => {
         const calorieResult = res.data;
