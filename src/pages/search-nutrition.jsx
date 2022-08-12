@@ -1,20 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal } from "./Modal";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
+import { Modal } from "../components/modal";
 
-function SearchRecipeForm() {
+function SearchNutrition() {
   const [query, setQuery] = useState("");
   const [recipeData, setRecipeData] = useState([]);
-  const [cookingStep, setCookingStep] = useState([]);
-  const [cuisine, setCuisine] = useState("");
-  const [ingredients, setIngredients] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [empty, setEmpty] = useState(false);
   const [searching, setSearching] = useState(false);
-  const [exclude, setExclude] = useState("");
-  const [loadingIngredients, setLoadingIngredients] = useState(true);
+  const [loadingNutritions, setLoadingNutritions] = useState(true);
+  const [badNutritions, setBadNutritions] = useState([]);
+  const [goodNutritions, setGoodNutritions] = useState([]);
 
   const recipeSearch = (e) => {
     e.preventDefault();
@@ -39,31 +37,19 @@ function SearchRecipeForm() {
 
   useEffect(() => {
     if (showModal == false) {
-      setLoadingIngredients(true);
+      setLoadingNutritions(true);
     }
   }, [showModal]);
 
-  const getIngredients = async (e, id) => {
-    await axios
-      .get(
-        `https://api.spoonacular.com/recipes/${id}/information?&apiKey=${process.env.API_KEY}`
-      )
-      .then((res) => {
-        setLoadingIngredients(false);
-        console.log(res.data.analyzedInstructions[0].steps);
-        setCookingStep(res.data.analyzedInstructions[0].steps);
-        console.log(res.data.cuisines);
-        setCuisine(res.data.cuisines);
-        console.log(res.data.extendedIngredients);
-        setIngredients(res.data.extendedIngredients);
-        console.log(id);
-        return console.log(cookingStep, cuisine, ingredients, id);
-      });
+  const getNutrition = async (e, id) => {
     await axios
       .get(
         `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?&apiKey=${process.env.API_KEY}`
       )
       .then((res) => {
+        setLoadingNutritions(false);
+        setBadNutritions(res.data.bad);
+        setGoodNutritions(res.data.good);
         console.log(res.data);
       });
   };
@@ -72,7 +58,7 @@ function SearchRecipeForm() {
     <div className="min-h-screen bg-primary">
       <Navbar />
       <h1 className="sm:pt-24 text-xl text-center font-bold text-text">
-        Search Recipes Here
+        Search Nutrition Here
       </h1>
       <div className="form-container flex justify-center items-center my-10">
         <form>
@@ -90,7 +76,7 @@ function SearchRecipeForm() {
               className="border-2 bg-primary text-text hover:bg-text hover:text-primary px-3 sm:px-6 py-2 font-semibold rounded-xl border-accent"
               onClick={recipeSearch}
             >
-              search
+              Search
             </button>
           </div>
         </form>
@@ -119,11 +105,11 @@ function SearchRecipeForm() {
                     className="button"
                     onClick={(e) => {
                       setShowModal(true);
-                      getIngredients(e, data.id);
+                      getNutrition(e, data.id);
                     }}
                   >
                     <button className="border-2 rounded-xl bg-primary text-text hover:bg-secondary hover:text-primary px-6 py-2 my-2 border-accent font-semibold">
-                      get recipe
+                      Get Nutritions
                     </button>
                   </div>
                 </div>
@@ -135,29 +121,53 @@ function SearchRecipeForm() {
         ) : null}
       </div>
       <Modal open={showModal} setOpen={setShowModal}>
-        {loadingIngredients ? (
+        {loadingNutritions ? (
           <h1>loading...</h1>
         ) : (
-          <div className="max-h-96 lg:max-w-[50rem] lg:max-h-[30rem] overflow-scroll overflow-x-hidden">
-            <h3 className="font-bold">Ingredients</h3>
-            <div className="ingredients-container my-3 columns-3">
-              {ingredients.map((ingredient, index) => {
-                return (
-                  <ul key={index} className="ingredient">
-                    <li>{ingredient.name}</li>
-                  </ul>
-                );
-              })}
+          <div className="text-center  lg:min-w-[30rem] max-h-96 lg:max-w-[50rem] lg:max-h-[30rem] overflow-scroll overflow-x-hidden">
+            <h3 className="font-bold">Bad Nutritions</h3>
+            <div className="ingredients-container my-3 text-center">
+              <table className="text-center w-full">
+                <tr>
+                  <th className="w-1/2  border-2 border-black">Name</th>
+                  <th className="w-1/2  border-2 border-black">Amount</th>
+                </tr>
+                {badNutritions.map((nutrition) => {
+                  return (
+                    <tr>
+                      <td className="w-1/2  border-2 border-black">
+                        {nutrition.title}
+                      </td>
+                      <td className="w-1/2  border-2 border-black">
+                        {nutrition.amount}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </table>
             </div>
             <div className="step flex flex-col my-3">
-              <h3 className="font-bold">Steps</h3>
-              {cookingStep.map((step, index) => {
-                return (
-                  <div key={index}>
-                    {step.number} {step.step}
-                  </div>
-                );
-              })}
+              <h3 className="font-bold">Good Nutritions</h3>
+              <div className="ingredients-container my-3 text-center">
+                <table className="text-center w-full">
+                  <tr>
+                    <th className="w-1/2  border-2 border-black">Name</th>
+                    <th className="w-1/2  border-2 border-black">Amount</th>
+                  </tr>
+                  {goodNutritions.map((nutrition) => {
+                    return (
+                      <tr className="w-1/2">
+                        <td className="w-1/2  border-2 border-black">
+                          {nutrition.title}
+                        </td>
+                        <td className="w-1/2  border-2 border-black">
+                          {nutrition.amount}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </table>
+              </div>
             </div>
           </div>
         )}
@@ -166,4 +176,4 @@ function SearchRecipeForm() {
   );
 }
 
-export default SearchRecipeForm;
+export default SearchNutrition;
