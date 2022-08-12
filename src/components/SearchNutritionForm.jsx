@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
-import { Modalku } from "./modal";
+import { Modalku } from "./Modal";
 
 function SearchNutritionForm() {
   const [query, setQuery] = useState("");
