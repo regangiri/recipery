@@ -65,9 +65,12 @@ function CalorieCount() {
   }, [activity]);
 
   useEffect(() => {
-    dispatch(fetchCalorie(calorieNeeds));
-    dispatch(fetchDailyMeal(calorieNeeds));
-    console.log(calorieNeeds);
+    const fetch = () => {
+      dispatch(fetchCalorie(calorieNeeds));
+      dispatch(fetchDailyMeal(calorieNeeds));
+      console.log(calorieNeeds);
+    };
+    fetch();
   }, [calorieNeeds]);
 
   useEffect(() => {
