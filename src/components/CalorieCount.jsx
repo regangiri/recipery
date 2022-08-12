@@ -62,7 +62,6 @@ function CalorieCount() {
         setActivityNumber(1.2);
         break;
     }
-    console.log(activityNumber);
   }, [activity]);
 
   useEffect(() => {
@@ -195,11 +194,12 @@ function CalorieCount() {
 
       <div className="recipe-result-by-calorie flex flex-wrap items-center justify-center">
         {searching
-          ? calorieData.map((data) => {
+          ? calorieData.map((data, index) => {
               return (
                 <RecipeCalorieResult
                   title={data.title}
                   id={data.id}
+                  key={index}
                   calories={data.calories}
                   img={data.image}
                   classname={
@@ -219,8 +219,8 @@ function CalorieCount() {
           {showDailyMealPlan
             ? dailyMealPlan.meals.map((meal) => {
                 return (
-                  <div>
-                    <MealPlanCard key={meal.id} meal={meal} />
+                  <div key={meal.id}>
+                    <MealPlanCard meal={meal} />
                   </div>
                 );
               })
