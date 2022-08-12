@@ -13,7 +13,7 @@ function LandingLayout() {
         </p>
       </div>
       <div className="image-container w-full sm:w-1/3 sm:py-0 py-3">
-        <Image src={landingPic} />
+        <Image src={landingPic} alt="landing page" />
       </div>
     </div>
   );
