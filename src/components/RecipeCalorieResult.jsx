@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "./Modal";
+import { Modalku } from "./Modal";
 import axios from "axios";
 
 function RecipeCalorieResult(props) {
@@ -45,7 +45,7 @@ function RecipeCalorieResult(props) {
           Get Recipes
         </button>
       </div>
-      <Modal open={showModal} setOpen={setShowModal}>
+      <Modalku open={showModal} setOpen={setShowModal}>
         <div className="max-h-96 lg:max-w-[50rem] lg:max-h-[30rem] overflow-scroll overflow-x-hidden">
           <h3 className="font-bold text-xl py-3">{props.title}</h3>
           <h3 className="font-bold">Ingredients</h3>
@@ -69,7 +69,7 @@ function RecipeCalorieResult(props) {
             })}
           </div>
         </div>
-      </Modal>
+      </Modalku>
     </div>
   );
 }
