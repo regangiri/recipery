@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { FiX } from "react-icons/fi";
 
-export const Modal = (props) => {
+export const Modalku = (props) => {
   // Passing modal state from page
   const { open, setOpen } = props;
 

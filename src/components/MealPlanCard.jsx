@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal } from "./Modal";
+import { Modalku } from "./Modal";
 
 function MealPlanCard({ meal }) {
   const [dataRecipePlan, setDataRecipePlan] = useState([]);
@@ -42,7 +42,7 @@ function MealPlanCard({ meal }) {
           Get Recipes
         </button>
       </div>
-      <Modal open={showModal} setOpen={setShowModal}>
+      <Modalku open={showModal} setOpen={setShowModal}>
         <div className="max-h-96 lg:max-w-[50rem] lg:max-h-[30rem] overflow-scroll overflow-x-hidden">
           <h3>{dataRecipePlan?.title}</h3>
           <h3 className="font-bold">Ingredients</h3>
@@ -66,7 +66,7 @@ function MealPlanCard({ meal }) {
             })}
           </div>
         </div>
-      </Modal>
+      </Modalku>
     </div>
   );
 }
