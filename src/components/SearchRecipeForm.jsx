@@ -141,9 +141,9 @@ function SearchRecipeForm() {
           <div className="max-h-96 lg:max-w-[50rem] lg:max-h-[30rem] overflow-scroll overflow-x-hidden">
             <h3 className="font-bold">Ingredients</h3>
             <div className="ingredients-container my-3 columns-3">
-              {ingredients.map((ingredient) => {
+              {ingredients.map((ingredient, index) => {
                 return (
-                  <ul className="ingredient">
+                  <ul key={index} className="ingredient">
                     <li>{ingredient.name}</li>
                   </ul>
                 );
@@ -151,9 +151,9 @@ function SearchRecipeForm() {
             </div>
             <div className="step flex flex-col my-3">
               <h3 className="font-bold">Steps</h3>
-              {cookingStep.map((step) => {
+              {cookingStep.map((step, index) => {
                 return (
-                  <div>
+                  <div key={index}>
                     {step.number} {step.step}
                   </div>
                 );
