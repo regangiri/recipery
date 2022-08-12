@@ -132,9 +132,9 @@ function SearchNutrition() {
                   <th className="w-1/2  border-2 border-black">Name</th>
                   <th className="w-1/2  border-2 border-black">Amount</th>
                 </tr>
-                {badNutritions.map((nutrition) => {
+                {badNutritions.map((nutrition, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td className="w-1/2  border-2 border-black">
                         {nutrition.title}
                       </td>
@@ -154,9 +154,9 @@ function SearchNutrition() {
                     <th className="w-1/2  border-2 border-black">Name</th>
                     <th className="w-1/2  border-2 border-black">Amount</th>
                   </tr>
-                  {goodNutritions.map((nutrition) => {
+                  {goodNutritions.map((nutrition, index) => {
                     return (
-                      <tr className="w-1/2">
+                      <tr key={index} className="w-1/2">
                         <td className="w-1/2  border-2 border-black">
                           {nutrition.title}
                         </td>
