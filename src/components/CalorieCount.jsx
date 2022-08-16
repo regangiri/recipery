@@ -218,7 +218,7 @@ function CalorieCount() {
           : null}
       </div>
       <div className="recipe-result-by-calorie flex flex-wrap items-center justify-center flex-col">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center md:flex-row flex-col">
           {showDailyMealPlan
             ? dailyMealPlan.meals.map((meal) => {
                 return (
